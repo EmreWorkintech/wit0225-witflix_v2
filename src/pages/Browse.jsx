@@ -1,7 +1,9 @@
 import React from "react";
 
-function Browse() {
-  return <div>Browse</div>;
+function Browse(props) {
+  const { activeProfile } = props;
+
+  return <div>Browse - {activeProfile.name}</div>;
 }
 
 export default Browse;

@@ -8,9 +8,11 @@ import SignUp from "./pages/SignUp";
 import Welcome from "./pages/Welcome";
 import Browse from "./pages/Browse";
 import NavController from "./components/NavController";
+import { useState } from "react";
 
 function App() {
-  console.log("Burada");
+  const [activeProfile, setActiveProfile] = useState(null);
+
   return (
     <>
       <Switch>
@@ -21,10 +23,10 @@ function App() {
           <SignUp />
         </Route>
         <Route path="/welcome">
-          <Welcome />
+          <Welcome setActiveProfile={setActiveProfile} />
         </Route>
         <Route path="/browse">
-          <Browse />
+          <Browse activeProfile={activeProfile} />
         </Route>
       </Switch>
       <NavController />

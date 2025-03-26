@@ -12,6 +12,7 @@ import { useState } from "react";
 
 function App() {
   const [activeProfile, setActiveProfile] = useState(null);
+  const [user, setUser] = useState(null);
 
   return (
     <>
@@ -20,13 +21,21 @@ function App() {
           <Redirect to="/signup" />
         </Route>
         <Route path="/signup">
-          <SignUp />
+          <SignUp setUser={setUser} />
         </Route>
         <Route path="/welcome">
-          <Welcome setActiveProfile={setActiveProfile} />
+          {user ? (
+            <Welcome setActiveProfile={setActiveProfile} />
+          ) : (
+            <Redirect to="/signup" />
+          )}
         </Route>
         <Route path="/browse">
-          <Browse activeProfile={activeProfile} />
+          {user ? (
+            <Browse activeProfile={activeProfile} />
+          ) : (
+            <Redirect to="/signup" />
+          )}
         </Route>
       </Switch>
       <NavController />

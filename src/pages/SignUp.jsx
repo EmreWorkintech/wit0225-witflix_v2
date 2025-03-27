@@ -55,8 +55,8 @@ function SignUp(props) {
   //hooks
   const history = useHistory();
   const [formData, setFormData] = useState({
-    email: "emre@wit.com",
-    password: "123qwerTY*",
+    email: "",
+    password: "",
   });
 
   const [errors, setErrors] = useState({
@@ -139,16 +139,24 @@ function SignUp(props) {
           placeholder="Email or phone number"
           onChange={handleChange}
           value={formData.email}
+          data-cy="email-input"
         />
-        {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
+        {errors.email && (
+          <ErrorMessage data-cy="error">{errors.email}</ErrorMessage>
+        )}
         <Input
           name="password"
           placeholder="Password"
           onChange={handleChange}
           value={formData.password}
+          data-cy="password-input"
         />
-        {errors.password && <ErrorMessage>{errors.password}</ErrorMessage>}
-        <Button disabled={!isValid}>Sign In</Button>
+        {errors.password && (
+          <ErrorMessage data-cy="error">{errors.password} </ErrorMessage>
+        )}
+        <Button disabled={!isValid} data-cy="submit-button">
+          Sign In
+        </Button>
       </Form>
     </Hero>
   );

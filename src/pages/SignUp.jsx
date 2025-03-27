@@ -4,6 +4,7 @@ import styled from "styled-components";
 import hero from "../assets/hero_image.png";
 import axios from "axios";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { HeaderStyled } from "../components/Styled";
 
 const Hero = styled.div`
   position: absolute;
@@ -13,11 +14,6 @@ const Hero = styled.div`
   height: 100vh;
   width: 100vw;
   background-size: cover;
-`;
-
-const Header = styled.header`
-  width: 80%;
-  margin: auto;
 `;
 
 const Logo = styled.img`
@@ -59,8 +55,8 @@ function SignUp(props) {
   //hooks
   const history = useHistory();
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: "emre@wit.com",
+    password: "123qwerTY*",
   });
 
   const [errors, setErrors] = useState({
@@ -133,18 +129,24 @@ function SignUp(props) {
   //template
   return (
     <Hero>
-      <Header>
+      <HeaderStyled>
         <Logo src={logo} />
-      </Header>
+      </HeaderStyled>
       <Form onSubmit={handleSubmit}>
         <h1>Sign In</h1>
         <Input
           name="email"
           placeholder="Email or phone number"
           onChange={handleChange}
+          value={formData.email}
         />
         {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
-        <Input name="password" placeholder="Password" onChange={handleChange} />
+        <Input
+          name="password"
+          placeholder="Password"
+          onChange={handleChange}
+          value={formData.password}
+        />
         {errors.password && <ErrorMessage>{errors.password}</ErrorMessage>}
         <Button disabled={!isValid}>Sign In</Button>
       </Form>
